@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import ThemeToggle from './ThemeToggle.jsx';
 import { portfolio as data } from './content.js';
 
@@ -6,12 +6,11 @@ const asset = path => `${import.meta.env.BASE_URL}${path}`;
 const newTab = { target: '_blank', rel: 'noopener noreferrer' };
 const hasContent = section => ['body', 'list', 'steps', 'cards'].some(key => section[key]?.length) || section.image;
 
-// A silent looping demo video, or an image. With reduced motion the video waits for the visitor to press play.
+// Muted playback allows the demo to autoplay in browsers.
 function Cover({ cover }) {
-  const [still] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   if (!cover.video) return <img className="cs-cover" src={asset(cover.src)} alt={cover.alt} />;
   return <figure className="cs-cover cs-video">
-    <video src={asset(cover.video)} poster={cover.poster ? asset(cover.poster) : undefined} autoPlay={!still} muted loop playsInline controls={still} preload="metadata" aria-label={cover.alt} />
+    <video src={asset(cover.video)} poster={cover.poster ? asset(cover.poster) : undefined} autoPlay muted loop playsInline controls preload="metadata" aria-label={cover.alt} />
     {cover.caption && <figcaption>{cover.caption}</figcaption>}
   </figure>;
 }
@@ -21,7 +20,7 @@ function Section({ section, number }) {
     <p className="cs-section-number">{String(number).padStart(2, '0')}</p>
     <div>
       <h2 id={`${section.id}-title`}>{section.title}</h2>
-      {section.image && <figure className="cs-figure"><img src={asset(section.image.src)} alt={section.image.alt} loading="lazy" />{section.caption && <figcaption>{section.caption}</figcaption>}</figure>}
+      {section.image && <figure className="cs-figure">{section.image.fullSize ? <a href={asset(section.image.src)} {...newTab} aria-label="Open architecture diagram at full resolution in a new tab"><img src={asset(section.image.src)} alt={section.image.alt} loading="lazy" /></a> : <img src={asset(section.image.src)} alt={section.image.alt} loading="lazy" />}{section.caption && <figcaption>{section.caption}</figcaption>}</figure>}
       {section.body?.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
       {section.list?.length > 0 && <ul className="cs-list">{section.list.map(item => <li key={item}>{item}</li>)}</ul>}
       {section.steps?.length > 0 && <ol className="cs-steps">{section.steps.map(step => <li key={step.title}><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol>}

@@ -7,7 +7,7 @@ const resumeUrl = `${import.meta.env.BASE_URL}${data.resume}`;
 // Links to other sites open in a new tab so visitors keep the portfolio open.
 const newTab = { target: '_blank', rel: 'noopener noreferrer' };
 
-function ResumeLink({ className, children = 'Download résumé ↓' }) {
+function ResumeLink({ className, children = 'Resume' }) {
   return <a className={className} href={resumeUrl} download>{children}</a>;
 }
 
@@ -33,7 +33,6 @@ function useReveal() {
 
 function ProjectCard({ project, featured = false, number }) {
   return <article className={`project-card reveal${featured ? ' featured' : ''}`}>
-    {project.image && <div className="project-thumb"><img src={`${import.meta.env.BASE_URL}${project.image}`} alt="" width="1200" height="675" loading="lazy" /></div>}
     <div className="project-content">
     <div className="project-topline"><span className="project-number">{String(number).padStart(2, '0')}</span><p className="eyebrow">{project.category}</p></div>
     <h3>{project.name}</h3>
@@ -65,13 +64,14 @@ export default function App() {
     <header className="header"><div className="container header-inner">
       <a className="wordmark" href="#home" aria-label={`${data.name} home`}>VP<span>.</span></a>
       <nav aria-label="Main navigation"><a href="#home">Home</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#about">About</a></nav>
-      <div className="header-actions"><ThemeToggle /><ResumeLink className="resume-link">Résumé <span aria-hidden="true">↓</span></ResumeLink></div>
+      <div className="header-actions"><ThemeToggle /><ResumeLink className="resume-link" /></div>
     </div></header>
     <main id="main" tabIndex={-1}>
       <section className="hero container" id="home">
         <div className="hero-meta"><p className="eyebrow">{data.role} — AI, backend & full stack</p><p className="hero-note">M.S. CS · CU Boulder ’26</p></div>
         <h1><span className="hero-greeting">Hi, I’m</span><span className="hero-name">{data.name.split(' ')[0]} <em>{data.name.split(' ').slice(1).join(' ')}</em><span className="name-dot">.</span></span></h1>
         <div className="hero-foot"><p className="hero-statement">{data.introduction}</p><div><p className="hero-summary">{data.summary}</p>
+          <p className="availability"><span aria-hidden="true" />{data.availability}</p>
           <div className="actions"><a className="button primary" href="#projects">See my work <span aria-hidden="true">↗</span></a><a className="button secondary" href="#contact">Say hello</a></div></div></div>
       </section>
       <section className="container highlights reveal" aria-label="A little about me"><article><p className="eyebrow">EDUCATION</p><h2>Computer science.<br />A practical perspective.</h2><p>M.S. Computer Science · GPA 3.7<br />University of Colorado Boulder</p></article><article><p className="eyebrow">CAPSTONE RECOGNITION</p><h2>2nd Place</h2><p>Credible Atlas · University capstone expo</p><a className="text-link" href="#projects">Meet the project ↗</a></article><article><p className="eyebrow">MY FOCUS</p><h2>From data<br />to useful products.</h2><p>AI workflows, dependable backends, and thoughtful interfaces.</p></article></section><section className="section container" id="projects">
@@ -87,7 +87,7 @@ export default function App() {
       <section className="section container about-grid reveal" id="about"><div>
         <p className="eyebrow">04 / ABOUT ME</p><h2>Curious about systems.<br /><em>Focused on people.</em></h2><p className="about-text">{data.about}</p><h3>Education</h3>
         {data.education.map(item => <p className="education-item" key={item}>{item}</p>)}
-        <ResumeLink className="text-link">Download my résumé ↓</ResumeLink>
+        <ResumeLink className="text-link" />
       </div></section>
       <section className="container contact reveal" id="contact">
         <p className="eyebrow">05 / LET’S CONNECT</p><h2>Let’s build something <em>useful.</em></h2><p>Have a role, a project, or an idea in mind? I’d love to hear about it.</p>

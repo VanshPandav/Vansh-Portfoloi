@@ -6,5 +6,5 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   base: './',
-  build: { rollupOptions: { input: { main: 'index.html', 'credible-atlas': 'credible-atlas.html' } } }
+  build: { rollupOptions: { input: { main: 'index.html', 'credible-atlas': 'credible-atlas.html', 'neurofit-ai': 'neurofit-ai.html', 'course-recommender': 'course-recommender.html' } } }
 });
