@@ -25,7 +25,7 @@ export const portfolio = {
     {company: 'Polyvault Shelters', role: 'Software Development Intern', dates: 'Jul 2021 — Aug 2021', text: 'Developed and hosted an e-commerce website with product listings and payment processing, supporting the customer purchase journey.', tools: 'Web development · E-commerce · Payment processing', url: 'https://www.polyvaultauto.com/'}
   ],
   // Keep this short for a spacious cloud. The full list remains below.
-  cloudSkills: ['Python', 'JavaScript', 'Java', 'C++', 'React', 'Node.js', 'FastAPI', 'MCP', 'RAG', 'LangChain', 'PostgreSQL', 'Neo4j', 'BigQuery', 'GCP', 'AWS', 'Docker', 'Kubernetes', 'Git'],
+  cloudSkills: ['Python', 'JavaScript', 'Java', 'C++', 'C#', 'React', 'Node.js', 'Express', 'FastAPI', 'ASP.NET', 'Claude Agent SDK', 'MCP', 'RAG', 'LangChain', 'PostgreSQL', 'Neo4j', 'BigQuery', 'GCP', 'AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Git'],
   skills: [
     {name: 'Languages', items: 'Python, JavaScript, Java, C++, C#, SQL'},
     {name: 'Application engineering', items: 'React, Node.js, Express, FastAPI, ASP.NET, REST APIs, OAuth 2.0, WebSockets'},
