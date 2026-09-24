@@ -4,6 +4,7 @@ import { TbBrandCSharp, TbDatabaseSearch, TbTopologyStar3 } from 'react-icons/tb
 
 // Brand colors are tuned for the light page: near-white marks use the ink color instead.
 // `ink` is the hover label's text color where white would be unreadable on the brand color.
+// `dark`/`darkInk` replace near-black marks that would vanish on the dark theme.
 export const skillIcons = {
   Python: { icon: SiPython, color: '#3776ab' },
   JavaScript: { icon: SiJavascript, color: '#e0b800', ink: '#183449' },
@@ -12,13 +13,13 @@ export const skillIcons = {
   'C#': { icon: TbBrandCSharp, color: '#68217a' },
   React: { icon: SiReact, color: '#149eca' },
   'Node.js': { icon: SiNodedotjs, color: '#339933' },
-  Express: { icon: SiExpress, color: '#183449' },
+  Express: { icon: SiExpress, color: '#183449', dark: '#f3eee4', darkInk: '#111' },
   FastAPI: { icon: SiFastapi, color: '#009688' },
   'ASP.NET': { icon: SiDotnet, color: '#512bd4' },
   'Claude Agent SDK': { icon: SiClaude, color: '#d97757' },
-  MCP: { icon: SiModelcontextprotocol, color: '#183449' },
+  MCP: { icon: SiModelcontextprotocol, color: '#183449', dark: '#f3eee4', darkInk: '#111' },
   RAG: { icon: TbDatabaseSearch, color: '#09618d' },
-  LangChain: { icon: SiLangchain, color: '#1c3c3c' },
+  LangChain: { icon: SiLangchain, color: '#1c3c3c', dark: '#f3eee4', darkInk: '#111' },
   PostgreSQL: { icon: SiPostgresql, color: '#4169e1' },
   Neo4j: { icon: TbTopologyStar3, color: '#018bff' },
   BigQuery: { icon: SiGooglebigquery, color: '#669df6', ink: '#183449' },

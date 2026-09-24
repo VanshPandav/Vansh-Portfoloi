@@ -26,13 +26,13 @@ export function smoothstep(value, edge0, edge1) {
   return t * t * (3 - 2 * t);
 }
 // A faint wireframe globe behind the icons, drawn with the same rotation so it moves with them.
-export function drawWireframe(context, width, height, yaw, pitch, radius, alpha) {
+export function drawWireframe(context, width, height, yaw, pitch, radius, alpha, rgb = '17, 17, 17') {
   context.clearRect(0, 0, width, height);
   if (alpha <= 0) return;
   context.save();
   context.translate(width / 2, height / 2);
   context.lineWidth = 1;
-  context.strokeStyle = `rgba(9, 97, 141, ${alpha})`;
+  context.strokeStyle = `rgba(${rgb || '17, 17, 17'}, ${alpha})`;
   const line = points => {
     context.beginPath();
     points.forEach((p, i) => {

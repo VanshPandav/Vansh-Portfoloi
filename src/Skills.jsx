@@ -34,6 +34,8 @@ export default function Skills() {
     let spin = 0;
     let lastScroll = scrollY;
     let current = scattered.map(p => ({ x: p.x * radius, y: p.y * radius }));
+    let wire = '';
+    const readWire = () => { wire = getComputedStyle(stage.current).getPropertyValue('--wire').trim(); paint(); };
 
     function paint(elapsed = 16) {
       const { yaw, pitch } = rotation.current;
@@ -53,7 +55,7 @@ export default function Skills() {
         node.style.setProperty('--facing', facing);
         node.classList.toggle('is-front', point.depth > 0.85);
       });
-      drawWireframe(context, width, height, yaw, pitch, radius * 0.97, assembled ? 0.07 : 0);
+      drawWireframe(context, width, height, yaw, pitch, radius * 0.97, assembled ? 0.07 : 0, wire);
     }
     function measure() {
       const ratio = devicePixelRatio || 1;
@@ -94,6 +96,8 @@ export default function Skills() {
     }
     draw.current = paint;
     measure();
+    readWire();
+    document.addEventListener('themechange', readWire);
     const resize = new ResizeObserver(measure);
     resize.observe(stage.current);
     const observer = new IntersectionObserver(([entry]) => {
@@ -104,7 +108,7 @@ export default function Skills() {
     addEventListener('scroll', scrolled, { passive: true });
     motion.addEventListener('change', start);
     start();
-    return () => { cancelAnimationFrame(frame); resize.disconnect(); observer.disconnect(); removeEventListener('scroll', scrolled); motion.removeEventListener('change', start); draw.current = () => {}; };
+    return () => { cancelAnimationFrame(frame); resize.disconnect(); observer.disconnect(); removeEventListener('scroll', scrolled); document.removeEventListener('themechange', readWire); motion.removeEventListener('change', start); draw.current = () => {}; };
   }, []);
 
   function pointerDown(event) {
@@ -136,14 +140,14 @@ export default function Skills() {
   }
 
   return <section className="section container skills-section" id="skills" aria-labelledby="skills-title">
-    <div className="skills-heading"><p className="eyebrow">04 / TECH STACK</p><h2 id="skills-title">My <span>Skills</span></h2><p>The tools I use to turn ideas into working software.</p></div>
+    <div className="skills-heading"><p className="eyebrow">03 / TECH STACK</p><h2 id="skills-title">My <em>skills</em></h2><p>The tools I use to turn ideas into working software.</p></div>
     <div ref={stage} className={`skill-stage${dragging ? ' is-dragging' : ''}`} tabIndex={0} role="group" aria-label="Interactive skill cloud" aria-describedby="cloud-help"
       onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerEnd} onPointerCancel={pointerEnd} onLostPointerCapture={pointerEnd} onKeyDown={keyDown}>
       <canvas className="skill-wireframe" ref={wireframe} aria-hidden="true" />
       <div className="skill-globe" ref={globe} aria-hidden="true" onPointerOver={() => { hovering.current = true; }} onPointerOut={() => { hovering.current = false; }}>
         {points.map(point => {
-          const { icon: Icon, color, ink = '#fff' } = skillIcons[point.name];
-          return <span className="floating-skill" key={point.name} style={{ '--brand': color, '--brand-ink': ink }}>
+          const { icon: Icon, color, ink = '#fff', dark = color, darkInk = ink } = skillIcons[point.name];
+          return <span className="floating-skill" key={point.name} style={{ '--brand-light': color, '--ink-light': ink, '--brand-dark': dark, '--ink-dark': darkInk }}>
             <span className="skill-body"><Icon className="skill-icon" /><span className="skill-name">{point.name}</span></span>
           </span>;
         })}

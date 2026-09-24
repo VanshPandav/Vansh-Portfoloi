@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="How Vansh Pandav led the backend and AI workflow for Credible Atlas, a conversational analytics platform that won 2nd Place at the CU Boulder capstone expo." />
+    <meta name="theme-color" content="#f3eee4" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <!-- Link previews (LinkedIn, Slack, iMessage, X). Crawlers need absolute URLs: update both if the site moves. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vanshpandav.github.io/Vansh-Portfoloi/credible-atlas.html" />
+    <meta property="og:title" content="Credible Atlas: case study by Vansh Pandav" />
+    <meta property="og:description" content="A conversational analytics platform built with Node.js, MCP, and the Claude Agent SDK. 2nd Place, CU Boulder capstone expo." />
+    <meta property="og:image" content="https://vanshpandav.github.io/Vansh-Portfoloi/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Vansh Pandav, Software Engineer: I build software that makes complex systems easier to use." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem('theme'); } catch (e) {}
+        if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = theme;
+        if (theme === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#141312');
+      })();
+    </script>
+    <title>Credible Atlas case study | Vansh Pandav</title>
+  </head>
+  <body>
+    <div id="root" data-study="credible-atlas"></div>
+    <noscript>Enable JavaScript to view this portfolio, or <a href="https://community.credibledata.com/atlas/">explore Atlas</a>.</noscript>
+    <script type="module" src="/src/caseStudyMain.jsx"></script>
+  </body>
+</html>
