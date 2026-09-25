@@ -32,11 +32,12 @@ function Section({ section, number }) {
 export default function CaseStudy({ study }) {
   useEffect(() => { document.title = `${study.name} case study | ${data.name}`; }, [study]);
   const sections = study.sections.filter(hasContent);
+  const navigation = sections.some(section => section.navTitle) ? sections.filter(section => section.navTitle) : sections.slice(0, 5);
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="header"><div className="container header-inner">
       <a className="wordmark" href="./index.html" aria-label={`${data.name} home`}>VP<span>.</span></a>
-      <nav aria-label="Case study sections">{sections.slice(0, 5).map(section => <a key={section.id} href={`#${section.id}`}>{section.title}</a>)}</nav>
+      <nav aria-label="Case study sections">{navigation.map(section => <a key={section.id} href={`#${section.id}`}>{section.navTitle || section.title}</a>)}</nav>
       <div className="header-actions"><ThemeToggle /><a className="resume-link" href="./index.html#projects">← All work</a></div>
     </div></header>
     <main id="main" tabIndex={-1} className="case-study">

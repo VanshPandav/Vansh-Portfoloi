@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Skills from './Skills.jsx';
+import ContactForm from './ContactForm.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
 import { portfolio as data } from './content.js';
 
@@ -59,12 +60,26 @@ function ExperienceItem({ job }) {
 
 export default function App() {
   useReveal();
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const bookingDialog = useRef(null);
+  useEffect(() => {
+    if (!bookingOpen) return;
+    const dialog = bookingDialog.current;
+    const previousOverflow = document.body.style.overflow;
+    dialog.showModal();
+    document.body.style.overflow = 'hidden';
+    return () => {
+      dialog.close();
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [bookingOpen]);
+  const openBooking = () => setBookingOpen(true);
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="header"><div className="container header-inner">
       <a className="wordmark" href="#home" aria-label={`${data.name} home`}>VP<span>.</span></a>
       <nav aria-label="Main navigation"><a href="#home">Home</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#about">About</a></nav>
-      <div className="header-actions"><ThemeToggle /><ResumeLink className="resume-link" /></div>
+      <div className="header-actions"><ThemeToggle /><ResumeLink className="resume-link" /><button className="book-call" onClick={openBooking} aria-haspopup="dialog">Book a call</button></div>
     </div></header>
     <main id="main" tabIndex={-1}>
       <section className="hero container" id="home">
@@ -72,7 +87,7 @@ export default function App() {
         <h1><span className="hero-greeting">Hi, I’m</span><span className="hero-name">{data.name.split(' ')[0]} <em>{data.name.split(' ').slice(1).join(' ')}</em><span className="name-dot">.</span></span></h1>
         <div className="hero-foot"><p className="hero-statement">{data.introduction}</p><div><p className="hero-summary">{data.summary}</p>
           <p className="availability"><span aria-hidden="true" />{data.availability}</p>
-          <div className="actions"><a className="button primary" href="#projects">See my work <span aria-hidden="true">↗</span></a><a className="button secondary" href="#contact">Say hello</a></div></div></div>
+          <div className="actions"><a className="button primary" href="#projects">See my work <span aria-hidden="true">↗</span></a><button className="button secondary" onClick={openBooking} aria-haspopup="dialog">Book a call</button></div></div></div>
       </section>
       <section className="container highlights reveal" aria-label="A little about me"><article><p className="eyebrow">EDUCATION</p><h2>Computer science.<br />A practical perspective.</h2><p>M.S. Computer Science · GPA 3.7<br />University of Colorado Boulder</p></article><article><p className="eyebrow">CAPSTONE RECOGNITION</p><h2>2nd Place</h2><p>Credible Atlas · University capstone expo</p><a className="text-link" href="#projects">Meet the project ↗</a></article><article><p className="eyebrow">MY FOCUS</p><h2>From data<br />to useful products.</h2><p>AI workflows, dependable backends, and thoughtful interfaces.</p></article></section><section className="section container" id="projects">
         <SectionHeading label="01 / SELECTED WORK" title={<>Ideas, built into <em>software.</em></>}>A closer look at the systems I’ve built, the problems they address, and what I learned.</SectionHeading>
@@ -92,9 +107,17 @@ export default function App() {
       <section className="container contact reveal" id="contact">
         <p className="eyebrow">05 / LET’S CONNECT</p><h2>Let’s build something <em>useful.</em></h2><p>Have a role, a project, or an idea in mind? I’d love to hear about it.</p>
         <a className="email-link" href={`mailto:${data.email}`}>{data.email}</a>
-        <div className="contact-links"><a href={data.linkedin} {...newTab}>LinkedIn ↗</a><a href={data.github} {...newTab}>GitHub ↗</a><ResumeLink /></div>
+        <ContactForm />
+        <div className="contact-links"><a href={data.linkedin} {...newTab}>LinkedIn ↗</a><a href={data.github} {...newTab}>GitHub ↗</a><ResumeLink /><button onClick={openBooking} aria-haspopup="dialog">Book a call</button></div>
       </section>
     </main>
+    <dialog ref={bookingDialog} className="booking-dialog" aria-labelledby="booking-title" onClose={() => setBookingOpen(false)} onClick={event => { if (event.target === event.currentTarget) bookingDialog.current.close(); }}>
+      <div className="booking-modal-content">
+        <div className="booking-modal-header"><h2 id="booking-title">Book a call</h2><button className="booking-close" autoFocus onClick={() => bookingDialog.current.close()} aria-label="Close booking calendar">×</button></div>
+        {bookingOpen && <iframe className="booking-calendar" src={data.booking.embedUrl} title="Book a call with Vansh Pandav — Google Calendar" />}
+        <a className="booking-fallback" href={data.booking.url} {...newTab}>Open booking page in a new tab ↗</a>
+      </div>
+    </dialog>
     <footer className="container footer"><span>© {new Date().getFullYear()} {data.name}</span><a href="#home">Back to top ↑</a></footer>
   </>;
 }
