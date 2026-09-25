@@ -223,3 +223,44 @@ h2 { font-size: clamp(40px, 6vw, 84px); font-weight: 800; line-height: .98; lett
 
 .availability { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; margin: 0 0 20px; }
 .availability > span { width: 7px; height: 7px; flex-shrink: 0; border-radius: 50%; background: var(--accent-ink); }
+
+/* The calendar is loaded only when its dialog opens. */
+button { font-family: inherit; }
+button.button { background: transparent; color: var(--ink); cursor: pointer; }
+.book-call { padding: 9px 16px; border: 1.5px solid var(--line); border-radius: 100px; font-size: 13px; font-weight: 700; white-space: nowrap; background: transparent; color: var(--ink); cursor: pointer; }
+.book-call:hover { background: var(--ink); color: var(--paper); }
+.contact-links button { color: #111; background: transparent; font-size: inherit; font-weight: inherit; padding: 10px 18px; border-radius: 100px; border: 1.5px solid #111; cursor: pointer; }
+.contact-links button:hover { background: #111; color: #f3eee4; }
+.booking-dialog { width: min(1000px, calc(100% - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--soft-line); border-radius: 12px; background: var(--paper); color: var(--ink); box-shadow: 0 24px 80px #0006; }
+.booking-dialog::backdrop { background: #0009; backdrop-filter: blur(5px); }
+.booking-modal-content { padding: 20px; }
+.booking-modal-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 16px; }
+.booking-modal-header h2 { font-size: 28px; letter-spacing: -.03em; }
+.booking-close { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--soft-line); border-radius: 50%; background: transparent; color: var(--ink); font-size: 25px; cursor: pointer; }
+.booking-calendar { display: block; width: 100%; height: min(560px, calc(100dvh - 190px)); border: 0; border-radius: 8px; background: #fff; color-scheme: light; }
+.booking-fallback { display: inline-block; margin-top: 14px; font-size: 13px; }
+@media (max-width: 1050px) and (min-width: 761px) {
+  .header-inner { gap: 14px; }
+  nav { gap: 15px; }
+}
+@media (max-width: 760px) {
+  .header-actions { gap: 6px; }
+  .book-call { padding-inline: 12px; }
+  .booking-modal-content { padding: 12px; }
+}
+
+.contact-form { margin-top: 32px; padding-top: 28px; border-top: 1px solid #111; }
+.contact-form h3 { color: #111; font-size: 28px; letter-spacing: -.03em; margin-bottom: 20px; }
+.contact-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.contact-form label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 18px; }
+.contact-form label span { font-weight: 400; }
+.contact-form input, .contact-form textarea { display: block; width: 100%; margin-top: 7px; padding: 12px 14px; background: #f3eee4; color: #111; border: 1px solid #111; border-radius: 6px; font: inherit; font-size: 16px; font-weight: 400; }
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: #655d50; opacity: 1; }
+.contact-form textarea { resize: vertical; min-height: 120px; }
+.contact-form input:focus-visible, .contact-form textarea:focus-visible, .contact-form button:focus-visible { outline: 2px solid #111; outline-offset: 3px; }
+.contact-form-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+.contact-form-actions button { padding: 12px 22px; border: 1px solid #111; border-radius: 100px; background: #111; color: #f3eee4; font-size: 14px; font-weight: 700; cursor: pointer; }
+.contact-form-actions button:disabled { opacity: .65; cursor: wait; }
+.contact-form-actions p, .contact-form-status { font-size: 13px; margin: 0; }
+.contact-form-status:not(:empty) { margin-top: 14px; }
+@media (max-width: 760px) { .contact-form-row { grid-template-columns: 1fr; gap: 0; } }
