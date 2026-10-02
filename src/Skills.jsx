@@ -55,7 +55,7 @@ export default function Skills() {
         node.style.setProperty('--facing', facing);
         node.classList.toggle('is-front', point.depth > 0.85);
       });
-      drawWireframe(context, width, height, yaw, pitch, radius * 0.97, assembled ? 0.07 : 0, wire);
+      drawWireframe(context, width, height, yaw, pitch, radius * 0.97, assembled ? 0.28 : 0, wire);
     }
     function measure() {
       const ratio = devicePixelRatio || 1;
@@ -139,8 +139,9 @@ export default function Skills() {
     draw.current();
   }
 
-  return <section className="section container skills-section" id="skills" aria-labelledby="skills-title">
-    <div className="skills-heading"><p className="eyebrow">03 / TECH STACK</p><h2 id="skills-title">My <em>skills</em></h2><p>The tools I use to turn ideas into working software.</p></div>
+  return <section className="section container legend-section skills-section" id="skills" aria-labelledby="skills-title" style={{ '--key': 'var(--tint-ochre)' }}>
+    <div className="legend"><span className="legend-key" aria-hidden="true" /><h2 id="skills-title">Skills</h2><p>The tools I use to turn ideas into working software.</p></div>
+    <div className="legend-body">
     <div ref={stage} className={`skill-stage${dragging ? ' is-dragging' : ''}`} tabIndex={0} role="group" aria-label="Interactive skill cloud" aria-describedby="cloud-help"
       onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerEnd} onPointerCancel={pointerEnd} onLostPointerCapture={pointerEnd} onKeyDown={keyDown}>
       <canvas className="skill-wireframe" ref={wireframe} aria-hidden="true" />
@@ -153,7 +154,8 @@ export default function Skills() {
         })}
       </div>
     </div>
-    <div className="skills-controls"><p id="cloud-help">Drag to explore · Hover an icon to see its name · Arrow keys to rotate</p><button type="button" aria-pressed={paused} onClick={() => { pausedRef.current = !paused; setPaused(!paused); }}>{paused ? 'Resume rotation' : 'Pause rotation'}</button></div>
+    <div className="skills-controls"><p id="cloud-help">Drag to explore, hover an icon to see its name, or use the arrow keys to rotate.</p><button type="button" aria-pressed={paused} onClick={() => { pausedRef.current = !paused; setPaused(!paused); }}>{paused ? 'Resume rotation' : 'Pause rotation'}</button></div>
     <details className="skills-readable"><summary>View all skills by category</summary><div className="skills-categories">{portfolio.skills.map(group => <div key={group.name}><h3>{group.name}</h3><ul>{group.items.split(', ').map(name => <li key={name}>{name}</li>)}</ul></div>)}</div></details>
+    </div>
   </section>;
 }

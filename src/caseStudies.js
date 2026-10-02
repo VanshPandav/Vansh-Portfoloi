@@ -2,9 +2,9 @@
 export const caseStudies = {
   "credible-atlas": {
     "name": "Credible Atlas",
-    "category": "Capstone · AI analytics",
+    "category": "Capstone, AI analytics",
     "tagline": "A conversational analytics platform that helps people explore datasets through natural language and share visualizations and data stories.",
-    "award": "2nd Place · University capstone expo",
+    "award": "2nd Place, University capstone expo",
     "facts": [
       {
         "label": "Role",
@@ -20,7 +20,7 @@ export const caseStudies = {
       },
       {
         "label": "Stack",
-        "value": "React · TypeScript · Node.js · Claude · MCP · Malloy · PostgreSQL · Neo4j · BigQuery · GCP"
+        "value": "React, TypeScript, Node.js, Claude, MCP, Malloy, PostgreSQL, Neo4j, BigQuery, GCP"
       }
     ],
     "cover": {
@@ -186,7 +186,7 @@ export const caseStudies = {
   },
   "neurofit-ai": {
     "name": "NeuroFit.AI",
-    "category": "Personal project · AI fitness assistant",
+    "category": "Personal project, AI fitness assistant",
     "tagline": "Bringing profile information, saved notes, and AI fitness workflows into one Streamlit application.",
     "facts": [
       {
@@ -195,15 +195,15 @@ export const caseStudies = {
       },
       {
         "label": "Context",
-        "value": "Personal project · Prototype"
+        "value": "Personal project, Prototype"
       },
       {
         "label": "Focus",
-        "value": "Profile context · Persistent notes · LangFlow integration"
+        "value": "Profile context, Persistent notes, LangFlow integration"
       },
       {
         "label": "Stack",
-        "value": "Python · Streamlit · LangFlow · AstraDB · Requests"
+        "value": "Python, Streamlit, LangFlow, AstraDB, Requests"
       }
     ],
     "sections": [
@@ -334,12 +334,12 @@ export const caseStudies = {
   },
   "course-recommender": {
     "name": "Graph-Driven Course Recommender",
-    "category": "University project · Graph data",
+    "category": "University project, Graph data",
     "tagline": "Exploring course discovery through learner relationships, enrollment history, and a Neo4j-backed application.",
     "facts": [
       {
         "label": "Role",
-        "value": "React user flows · Node.js APIs · Graph modeling"
+        "value": "React user flows, Node.js APIs, Graph modeling"
       },
       {
         "label": "Context",
@@ -351,7 +351,7 @@ export const caseStudies = {
       },
       {
         "label": "Stack",
-        "value": "React · Node.js · Express · Neo4j · Cypher · JWT · GCP"
+        "value": "React, Node.js, Express, Neo4j, Cypher, JWT, GCP"
       }
     ],
     "sections": [

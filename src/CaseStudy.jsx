@@ -17,7 +17,7 @@ function Cover({ cover }) {
 
 function Section({ section, number }) {
   return <section className="cs-section" id={section.id} aria-labelledby={`${section.id}-title`}>
-    <p className="cs-section-number">{String(number).padStart(2, '0')}</p>
+    <p className="cs-section-number">{number}</p>
     <div>
       <h2 id={`${section.id}-title`}>{section.title}</h2>
       {section.image && <figure className="cs-figure">{section.image.fullSize ? <a href={asset(section.image.src)} {...newTab} aria-label="Open architecture diagram at full resolution in a new tab"><img src={asset(section.image.src)} alt={section.image.alt} loading="lazy" /></a> : <img src={asset(section.image.src)} alt={section.image.alt} loading="lazy" />}{section.caption && <figcaption>{section.caption}</figcaption>}</figure>}
@@ -36,21 +36,21 @@ export default function CaseStudy({ study }) {
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="header"><div className="container header-inner">
-      <a className="wordmark" href="./index.html" aria-label={`${data.name} home`}>VP<span>.</span></a>
+      <a className="wordmark" href="./index.html" aria-label={`${data.name} home`}>{data.name}</a>
       <nav aria-label="Case study sections">{navigation.map(section => <a key={section.id} href={`#${section.id}`}>{section.navTitle || section.title}</a>)}</nav>
-      <div className="header-actions"><ThemeToggle /><a className="resume-link" href="./index.html#projects">← All work</a></div>
+      <div className="header-actions"><ThemeToggle /><a className="resume-link" href="./index.html#projects">All work</a></div>
     </div></header>
     <main id="main" tabIndex={-1} className="case-study">
       <section className="container cs-hero">
-        <div className="hero-meta"><p className="eyebrow">Case study · {study.category}</p>{study.award && <p className="cs-award">★ {study.award}</p>}</div>
-        <h1>{study.name}<span className="name-dot">.</span></h1>
+        <div className="hero-meta"><p>Case study: {study.category}</p>{study.award && <p className="cs-award">{study.award}</p>}</div>
+        <h1>{study.name}</h1>
         <p className="cs-tagline">{study.tagline}</p>
         <dl className="cs-facts">{study.facts.map(fact => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>
         {study.cover && <Cover cover={study.cover} />}
       </section>
       <div className="container cs-body">{sections.map((section, i) => <Section key={section.id} section={section} number={i + 1} />)}</div>
-      {study.links.length > 0 && <section className="container cs-links"><p className="eyebrow">See it for yourself</p><div className="actions">{study.links.map((link, i) => <a key={link.url} className={`button ${i ? 'secondary' : 'primary'}`} href={link.url} {...newTab}>{link.label} <span aria-hidden="true">↗</span></a>)}</div></section>}
+      {study.links.length > 0 && <section className="container cs-links"><h2>See it for yourself</h2><div className="actions">{study.links.map((link, i) => <a key={link.url} className={`button ${i ? 'secondary' : 'primary'}`} href={link.url} {...newTab}>{link.label}</a>)}</div></section>}
     </main>
-    <footer className="container footer"><span>© {new Date().getFullYear()} {data.name}</span><a href="./index.html#projects">← Back to all projects</a></footer>
+    <footer className="container footer"><span>© {new Date().getFullYear()} {data.name}</span><a href="./index.html#projects">Back to all projects</a></footer>
   </>;
 }

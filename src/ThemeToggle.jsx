@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const colors = { light: '#f3eee4', dark: '#141312' };
+const colors = { light: '#f7f7f4', dark: '#14181d' };
 
 // index.html sets data-theme before the page paints; this keeps it in sync afterwards.
 function applyTheme(theme) {

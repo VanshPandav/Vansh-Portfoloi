@@ -1,41 +1,34 @@
-.skills-section { padding-top: 35px; }
-.skills-heading { text-align: center; position: relative; z-index: 1; }
-.skills-heading .eyebrow { margin-bottom: 12px; }
-.skills-heading > p:last-child { margin: 18px auto 0; color: var(--muted); font-size: 16px; }
-.skill-stage { width: min(100%, 860px); height: 640px; margin: -10px auto 0; position: relative; overflow: hidden; cursor: grab; touch-action: none; user-select: none; background: radial-gradient(circle at center, var(--glow), transparent 52%); }
-.skill-stage { --glow: #fffaf2; --wire: 17, 17, 17; }
-:root[data-theme="dark"] .skill-stage { --glow: #25221e; --wire: 243, 238, 228; }
+/* The skill globe is drawn as a map graticule in contour brown. --wire is the contour colour as r, g, b. */
+.skill-stage { width: 100%; height: 600px; position: relative; overflow: hidden; cursor: grab; touch-action: none; user-select: none; --wire: 138, 90, 46; }
+:root[data-theme="dark"] .skill-stage { --wire: 211, 157, 102; }
 .skill-stage.is-dragging { cursor: grabbing; }
-.skill-stage:focus-visible { outline: 2px dashed var(--accent); outline-offset: -2px; border-radius: 24px; }
+.skill-stage:focus-visible { outline: 2px solid var(--signal); outline-offset: -2px; border-radius: 4px; }
 .skill-wireframe, .skill-globe { position: absolute; inset: 0; width: 100%; height: 100%; }
 .skill-wireframe { pointer-events: none; }
 /* Each icon sharpens and gains color as it turns toward the viewer (--facing: 0 back, 1 front). */
 .floating-skill { --brand: var(--brand-light); --brand-ink: var(--ink-light); --facing: 0; position: absolute; top: 50%; left: 50%; will-change: transform; transition: opacity .5s ease-out; }
 :root[data-theme="dark"] .floating-skill { --brand: var(--brand-dark); --brand-ink: var(--ink-dark); }
-.skill-body { display: flex; flex-direction: column; align-items: center; transition: transform .3s cubic-bezier(.175, .885, .32, 1.275); }
-.skill-icon { font-size: 44px; color: var(--brand); filter: grayscale(calc(1 - var(--facing))) blur(calc((1 - var(--facing)) * .6px)) drop-shadow(0 2px 3px #1111111f); transition: filter .3s ease, color .3s ease; }
-.skill-name { margin-top: 8px; padding: 2px 9px; border-radius: 100px; white-space: nowrap; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; opacity: 0; transition: all .3s cubic-bezier(.175, .885, .32, 1.275); }
+.skill-body { display: flex; flex-direction: column; align-items: center; transition: transform .25s ease-out; }
+.skill-icon { font-size: 42px; color: var(--brand); filter: grayscale(calc(1 - var(--facing))) blur(calc((1 - var(--facing)) * .6px)); transition: filter .3s ease, color .3s ease; }
+.skill-name { margin-top: 8px; padding: 2px 8px; border-radius: 3px; white-space: nowrap; color: var(--muted); font-size: 12px; font-weight: 600; opacity: 0; transition: opacity .25s ease-out, color .25s ease-out, background .25s ease-out; }
 .floating-skill.is-front .skill-name { opacity: 1; }
 .floating-skill:hover { z-index: 1000 !important; cursor: pointer; }
-.floating-skill:hover .skill-body { transform: scale(1.3); }
-.floating-skill:hover .skill-icon { filter: drop-shadow(0 0 16px var(--brand)); }
-.floating-skill:hover .skill-name { opacity: 1; color: var(--brand-ink); background: var(--brand); transform: translateY(4px) scale(1.05); }
+.floating-skill:hover .skill-body { transform: scale(1.15); }
+.floating-skill:hover .skill-name { opacity: 1; color: var(--brand-ink); background: var(--brand); }
 .skill-stage.is-dragging .floating-skill { cursor: grabbing; }
-.skills-controls { text-align: center; }
-.skills-controls p { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
-.skills-controls button { font: inherit; font-size: 13px; font-weight: 700; color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 100px; padding: 9px 20px; cursor: pointer; }
-.skills-controls button:hover { background: var(--ink); color: var(--paper); }
-.skills-controls button:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
-.skills-readable { margin: 22px auto 0; max-width: 960px; }
-.skills-readable summary { font-weight: 600; width: fit-content; margin: auto; padding: 10px; cursor: pointer; font-size: 14px; color: var(--muted); }
-.skills-categories { margin-top: 22px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding: 25px 0; border-top: 1px solid var(--line); }
-.skills-categories h3 { font-size: 16px; font-weight: 700; }
+.skills-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.skills-controls p { font-size: 14px; color: var(--muted); margin: 0; }
+.skills-controls button { font: inherit; font-size: 14px; font-weight: 600; color: var(--ink); background: transparent; border: 1px solid var(--rule-strong); border-radius: 4px; padding: 8px 16px; cursor: pointer; transition: background .2s; }
+.skills-controls button:hover { background: var(--surface); }
+.skills-readable { margin-top: 20px; }
+.skills-readable summary { font-weight: 600; width: fit-content; padding: 6px 0; cursor: pointer; font-size: 15px; color: var(--signal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.skills-categories { margin-top: 18px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding-top: 22px; border-top: 1px solid var(--rule); }
+.skills-categories h3 { font-size: 14px; font-weight: 600; color: var(--contour); margin-bottom: 8px; }
 .skills-categories ul { padding: 0; margin: 0; list-style: none; }
-.skills-categories li { font-size: 14px; color: var(--muted); padding-block: 4px; }
+.skills-categories li { font-size: 15px; color: var(--ink); padding-block: 3px; }
 @media (max-width: 760px) {
-  .skill-stage { height: clamp(360px, 100vw, 520px); }
-  .skill-icon { font-size: 34px; }
-  .skill-name { font-size: 9px; }
+  .skill-stage { height: clamp(340px, 100vw, 500px); }
+  .skill-icon { font-size: 32px; }
   .skills-categories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (prefers-reduced-motion: reduce) {

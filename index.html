@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Vansh Pandav — software engineer building AI-powered products, backend systems, and practical full-stack applications." />
-    <meta name="theme-color" content="#f3eee4" />
+    <meta name="theme-color" content="#f7f7f4" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <!-- Link previews (LinkedIn, Slack, iMessage, X). Crawlers need absolute URLs: update both if the site moves. -->
     <meta property="og:type" content="website" />
@@ -22,7 +22,7 @@
         try { theme = localStorage.getItem('theme'); } catch (e) {}
         if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         document.documentElement.dataset.theme = theme;
-        if (theme === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#141312');
+        if (theme === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#14181d');
       })();
     </script>
     <title>Vansh Pandav | Software Engineer</title>

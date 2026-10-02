@@ -37,7 +37,7 @@ export default function ContactForm() {
     </div>
     <label htmlFor="contact-subject">Subject <span>(optional)</span><input id="contact-subject" name="subject" placeholder="What would you like to discuss?" maxLength={200} /></label>
     <label htmlFor="contact-message">Message<textarea id="contact-message" name="message" placeholder="Tell me a little about the opportunity or idea…" rows={4} required maxLength={5000} /></label>
-    <div className="contact-form-actions"><button type="submit" disabled={!endpoint || status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message ↗'}</button>{!endpoint && <p>Please use my email link above for now.</p>}</div>
+    <div className="contact-form-actions"><button type="submit" disabled={!endpoint || status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'}</button>{!endpoint && <p>Please use my email link above for now.</p>}</div>
     <p className="contact-form-status" role="status" aria-live="polite">{status === 'success' ? 'Thanks! Your message has been submitted.' : status === 'error' ? 'We couldn’t confirm submission. Your message is still here—try again or email me directly.' : ''}</p>
   </form>;
 }
