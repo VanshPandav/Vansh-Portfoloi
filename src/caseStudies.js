@@ -8,7 +8,7 @@ export const caseStudies = {
     "facts": [
       {
         "label": "Role",
-        "value": "Software Developer — backend & AI workflow lead"
+        "value": "Software Engineer — backend & AI workflow lead"
       },
       {
         "label": "Timeline",
